@@ -41,3 +41,9 @@ After writing your own implementations, update the bindings in
 There is also a `env` variable called `PUBLISH_UPDATES` which can be set to
 `false` to prevent updates being published. If you wish to test that your
 items are being pulled correctly but not publish them, use this option.
+
+
+### Inspiration
+
+I put this together after speaking to [Daniel Sinclair](https://twitter.com/@_danielsinclair)
+on Twitter, who in turn stole in from [Jason Black](https://twitter.com/itsjasonblack).
