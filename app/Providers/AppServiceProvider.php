@@ -13,6 +13,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(
+            'App\Contracts\FeedContract',
+            'App\Services\Providers\Pinboard'
+        );
+
+        $this->app->bind(
+            'App\Contracts\NetworkContract',
+            'App\Services\Networks\Twitter'
+        );
     }
 }

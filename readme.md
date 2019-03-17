@@ -1,21 +1,28 @@
-# Lumen PHP Framework
+### Marker
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://poser.pugx.org/laravel/lumen-framework/d/total.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/lumen-framework/v/stable.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/lumen-framework/v/unstable.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://poser.pugx.org/laravel/lumen-framework/license.svg)](https://packagist.org/packages/laravel/lumen-framework)
+This application will take your bookmarked items from bookmarking services and
+post them to supported social networks.
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
+The initial supported input service is [Pinboard](https://pinboard.in/) by
+using your user RSS feed (look for 'RSS' link in your dashboard) and store that
+in the `env` variable `RSS_URL`.
 
-## Official Documentation
+Out of the box, Twitter is the initial supported network. You will need to
+obtain your own set of Twitter OAuth credentials including:
 
-Documentation for the framework can be found on the [Lumen website](https://lumen.laravel.com/docs).
+ - `TWITTER_CONSUMER_KEY`
+ - `TWITTER_CONSUMER_SECRET`
+ - `TWITTER_ACCESS_TOKEN`
+ - `TWITTER_ACCESS_TOKEN_SECRET`
 
-## Security Vulnerabilities
+You'll need to configure your cron system to run the command
+`php artisan schedule:run` every minute. In turn, this will query your input
+source every five minutes for new content.
 
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+If you want to write new input adapters, take a look at
+`app/Contracts/FeedContract.php` file. If you want to write a new output
+network then you'll need to implement the methods found within the
+`app/Contracts/NetworkContract.php`.
 
-## License
-
-The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+After writing your own implementations, update the bindings in
+`app\Providers\AppServiceProvider.php` to point at your newly written classes.
