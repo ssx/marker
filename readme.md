@@ -26,3 +26,7 @@ network then you'll need to implement the methods found within the
 
 After writing your own implementations, update the bindings in
 `app\Providers\AppServiceProvider.php` to point at your newly written classes.
+
+There is also a `env` variable called `PUBLISH_UPDATES` which can be set to
+`false` to prevent updates being published. If you wish to test that your
+items are being pulled correctly but not publish them, use this option.
